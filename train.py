@@ -73,7 +73,7 @@ def main():
     with tf.Session() as sess:
         saver = tf.train.Saver(max_to_keep=5)  # will keep last 5 epochs
         sess.run(tf.global_variables_initializer())
-        if os.path.isdir(os.path.dirname(save_dir)):
+        if os.path.isdir(save_dir):
             restore_from = tf.train.latest_checkpoint(save_dir)
             begin_at_epoch = int(restore_from.split('-')[-1])
             saver.restore(sess, restore_from)
