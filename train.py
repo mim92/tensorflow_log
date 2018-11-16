@@ -46,8 +46,8 @@ def eval(sess, model, x_test, y_test, batch_size):
 
 def main():
     parser = argparse.ArgumentParser(description='train the model for all model')
-    parser.add_argument('--epochs', type=int, default=2)
-    parser.add_argument('--batch_size', type=int, default=16)
+    parser.add_argument('--epochs', type=int, default=10)
+    parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--model_dir', type=str, default='training_model')
 
     args = parser.parse_args()
@@ -60,8 +60,6 @@ def main():
     x_train, x_test = np.expand_dims(x_train, axis=-1) / 255., np.expand_dims(x_test, axis=-1) / 255.
     y_train = tf.keras.utils.to_categorical(y_train, 10)
     y_test = tf.keras.utils.to_categorical(y_test, 10)
-    # x_train = x_train[:1024]
-    # x_test = x_test[:256]
 
     model = CNN()
     os.makedirs(model_dir, exist_ok=True)
